@@ -27,8 +27,9 @@ def main():
                 os.makedirs(args.output_dir)
 
         filenames = [
-            f.path for f in os.scandir(args.image_dir) if f.is_file() and f.path.endswith(('.png', '.jpg'))]
-
+            os.path.join(args.image_dir, f) for f in os.listdir(args.image_dir)
+            if os.path.isfile(os.path.join(args.image_dir,f)) and f.endswith(('.png','.jpg'))]
+        
         start = time.time()
         for f in filenames:
             input_image, draw_image, output_scale = posenet.read_imgfile(

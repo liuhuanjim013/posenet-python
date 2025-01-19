@@ -1,4 +1,4 @@
-import urllib.request
+import urllib2
 import posixpath
 import json
 import zlib
@@ -15,8 +15,7 @@ CHK = CFG['chk']
 def download_file(checkpoint, filename, base_dir):
     output_path = os.path.join(base_dir, checkpoint, filename)
     url = posixpath.join(GOOGLE_CLOUD_STORAGE_DIR, checkpoint, filename)
-    req = urllib.request.Request(url)
-    response = urllib.request.urlopen(req)
+    response = urllib2.urlopen(url)
     if response.info().get('Content-Encoding') == 'gzip':
         data = zlib.decompress(response.read(), zlib.MAX_WBITS | 32)
     else:

@@ -1,4 +1,4 @@
-import urllib.request
+import urllib
 import os
 import argparse
 
@@ -43,7 +43,7 @@ def main():
     for f in TEST_IMAGES:
         url = os.path.join(GOOGLE_CLOUD_IMAGE_BUCKET, f)
         print('Downloading %s' % f)
-        urllib.request.urlretrieve(url, os.path.join(args.image_dir, f))
+        urllib.urlretrieve(url, os.path.join(args.image_dir, f))
 
 
 if __name__ == "__main__":

@@ -21,7 +21,8 @@ def main():
         num_images = args.num_images
 
         filenames = [
-            f.path for f in os.scandir(args.image_dir) if f.is_file() and f.path.endswith(('.png', '.jpg'))]
+            os.path.join(args.image_dir, f) for f in os.listdir(args.image_dir)
+            if os.path.isfile(os.path.join(args.image_dir,f)) and f.endswith(('.png','.jpg'))]
         if len(filenames) > num_images:
             filenames = filenames[:num_images]
 
